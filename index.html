@@ -69,8 +69,15 @@
         .hero {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 7rem 2rem 4rem;
-            background: linear-gradient(160deg, #f0f7ff 0%, #e8f4fd 40%, #fff 100%);
+            background: linear-gradient(160deg, rgba(10,37,64,0.82) 0%, rgba(0,112,243,0.7) 100%), url('img-medical-tech.jpg') center/cover no-repeat;
         }
+
+        .hero h1, .hero .hero-stat .number { color: white; }
+        .hero p { color: rgba(255,255,255,0.85); }
+        .hero-stats { border-top-color: rgba(255,255,255,0.15); }
+        .hero .hero-stat .label { color: rgba(255,255,255,0.6); }
+        .btn-outline { background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.3); }
+        .btn-outline:hover { background: rgba(255,255,255,0.2); border-color: white; color: white; }
 
         .hero-content { max-width: 780px; }
 
@@ -130,13 +137,33 @@
 
         .about-image {
             border-radius: var(--radius); aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #0a2540, #1a3a5c);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius);
+        }
+
+        /* PHOTO BANNER */
+        .photo-banner {
+            position: relative; height: 320px; overflow: hidden;
             display: flex; align-items: center; justify-content: center;
         }
 
-        .about-image-inner { text-align: center; color: white; padding: 2rem; }
-        .about-image-inner i { font-size: 3.5rem; margin-bottom: 1rem; opacity: 0.85; }
-        .about-image-inner p { font-size: 1rem; opacity: 0.7; }
+        .photo-banner img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-banner-overlay {
+            position: relative; z-index: 1; text-align: center; color: white;
+            background: rgba(10,37,64,0.65); width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 2rem;
+        }
+
+        .photo-banner-overlay h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .photo-banner-overlay p { font-size: 1rem; opacity: 0.8; max-width: 500px; }
 
         .about-text h2 { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 1.2rem; }
         .about-text p { color: var(--text-light); margin-bottom: 0.8rem; font-size: 0.98rem; }
@@ -182,6 +209,12 @@
         .service-content h3 { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
         .service-content p { color: var(--text-light); font-size: 0.92rem; line-height: 1.7; }
 
+        .services-image {
+            border-radius: var(--radius); overflow: hidden; margin-bottom: 2.5rem;
+            height: 260px;
+        }
+        .services-image img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+
         /* PROCESS */
         .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
@@ -196,6 +229,9 @@
 
         .process-step h4 { font-size: 0.95rem; font-weight: 700; color: var(--primary); margin-bottom: 0.4rem; }
         .process-step p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+
+        .process-image { text-align: center; margin-bottom: 2.5rem; }
+        .process-image img { max-width: 420px; width: 100%; border-radius: var(--radius); }
 
         /* REGIONS */
         .regions { background: var(--primary); color: white; }
@@ -278,13 +314,10 @@
         .contact-block a:hover { color: var(--accent); }
 
         .contact-map {
-            background: linear-gradient(135deg, #0a2540, #1a3a5c); border-radius: var(--radius);
-            display: flex; align-items: center; justify-content: center;
-            color: white; flex-direction: column; gap: 0.8rem; min-height: 280px;
+            border-radius: var(--radius); overflow: hidden; min-height: 280px;
         }
 
-        .contact-map i { font-size: 2.5rem; color: #3291ff; }
-        .contact-map p { opacity: 0.6; font-size: 0.9rem; }
+        .contact-map img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
 
         /* FOOTER */
         .footer { background: var(--primary); color: rgba(255,255,255,0.65); padding: 2.5rem 2rem 1.5rem; }
@@ -369,10 +402,7 @@
     <div class="container">
         <div class="about-grid">
             <div class="about-image">
-                <div class="about-image-inner">
-                    <i class="fas fa-heartbeat"></i>
-                    <p>Medical Excellence Worldwide</p>
-                </div>
+                <img src="img-handshake.jpg" alt="Professional partnership">
             </div>
             <div class="about-text">
                 <div class="section-label">About Us</div>
@@ -416,12 +446,23 @@
     </div>
 </section>
 
+<div class="photo-banner">
+    <img src="img-travel-medical.jpg" alt="Global medical assistance">
+    <div class="photo-banner-overlay">
+        <h3>Your Health, Our Priority</h3>
+        <p>Providing medical assistance and financial security across borders</p>
+    </div>
+</div>
+
 <section class="services" id="services">
     <div class="container">
         <div class="section-header">
             <div class="section-label">Our Services</div>
             <h2>Comprehensive Medical Assistance</h2>
             <p>Comprehensive medical assistance and insurance support tailored to your international healthcare needs.</p>
+        </div>
+        <div class="services-image">
+            <img src="img-medical-team.jpg" alt="Medical team coordination">
         </div>
         <div class="services-list">
             <div class="service-card">
@@ -456,6 +497,9 @@
             <h2>Expert Guidance Every Step</h2>
             <p>Our experienced team provides personalized support throughout your medical journey, from initial planning to complete recovery.</p>
         </div>
+        <div class="process-image">
+            <img src="img-healthcare.jpg" alt="Healthcare services">
+        </div>
         <div class="process-grid">
             <div class="process-step"><div class="step-number">1</div><h4>Initial Assessment</h4><p>Understanding your medical needs and insurance coverage</p></div>
             <div class="process-step"><div class="step-number">2</div><h4>Coordination</h4><p>Scheduling appointments and arranging logistics</p></div>
@@ -489,6 +533,14 @@
         <div class="region-note">Each region benefits from our local expertise combined with international standards, ensuring culturally sensitive and efficient service delivery.</div>
     </div>
 </section>
+
+<div class="photo-banner">
+    <img src="img-insurance-form.jpg" alt="Insurance documentation">
+    <div class="photo-banner-overlay">
+        <h3>Trusted Insurance Partners</h3>
+        <p>Seamless claims coordination and direct billing worldwide</p>
+    </div>
+</div>
 
 <section class="insurance" id="insurance">
     <div class="container">
@@ -526,8 +578,7 @@
                 </div>
             </div>
             <div class="contact-map">
-                <i class="fas fa-map-location-dot"></i>
-                <p>Tashkent, Uzbekistan</p>
+                <img src="img-partnership.jpg" alt="Our team">
             </div>
         </div>
     </div>
